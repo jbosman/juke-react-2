@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render( <h1>Hello World!</h1>, document.getElementById('app'));
+import App from './main';
 
-console.log('Hello React');
+ReactDOM.render( <App />, document.getElementById('app') );
