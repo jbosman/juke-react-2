@@ -10,6 +10,8 @@ const toJSON = function(resp){ return resp.data }
 const log = console.log.bind(console);
 const logError = console.error.bind(console);
 
+const audio = document.createElement('audio');
+
 export default class App extends Component {
 
 	constructor(){
@@ -20,6 +22,7 @@ export default class App extends Component {
 					};
 		this.handleAlbumClick = this.handleAlbumClick.bind(this);
 		this.handleAlbumButtonClick = this.handleAlbumButtonClick.bind(this);
+		this.handlePlayButtonClick = this.handlePlayButtonClick.bind(this);
 	}
 
 	componentDidMount(){
@@ -44,6 +47,12 @@ export default class App extends Component {
 		this.setState({selectedAlbum: {} });
 	}
 
+	handlePlayButtonClick(){
+		audio.src = 'https://learndotresources.s3.amazonaws.com/workshop/5616dbe5a561920300b10cd7/Dexter_Britain_-_03_-_The_Stars_Are_Out_Interlude.mp3';
+		audio.load();
+		audio.play();
+	}
+
 	render(){
 		return (
 			<div className='container-fluid'>
@@ -53,7 +62,10 @@ export default class App extends Component {
 
 				<div className="col-xs-10">
 					{ this.state.selectedAlbum.id ? 
-						<SingleAlbum album={this.state.selectedAlbum} /> : 
+						<SingleAlbum 
+							album={this.state.selectedAlbum} 
+							handlePlayButtonClick={this.handlePlayButtonClick}
+						/> : 
 						<Albums albums={this.state.albums} albumclick={this.handleAlbumClick} /> 
 					}
 				</div>
