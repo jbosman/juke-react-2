@@ -9,6 +9,15 @@ import axios from 'axios';
 
 export default class App extends Component {
 
+	constructor(){
+		super();
+		this.state = { 
+						albums: [],
+						selectedAlbum: {}
+					};
+		this.handleAlbumClick = this.handleAlbumClick.bind(this);
+	}
+
 	componentDidMount(){
 		axios.get('/api/albums')
 		.then((resp) => {
@@ -16,9 +25,8 @@ export default class App extends Component {
 		})
 	}
 
-	constructor(){
-		super();
-		this.state = { albums: [] };
+	handleAlbumClick(album){
+		this.setState({selectedAlbum: album });
 	}
 
 	render(){
@@ -29,8 +37,10 @@ export default class App extends Component {
 				</div>
 
 				<div className="col-xs-10">
-				  <Albums albums={this.state.albums} />
-				  <SingleAlbum />
+					{ this.state.selectedAlbum.id ? 
+						<SingleAlbum album={this.state.selectedAlbum} /> : 
+						<Albums albums={this.state.albums} albumclick={this.handleAlbumClick} /> 
+					}
 				</div>
 
 				<Footer />

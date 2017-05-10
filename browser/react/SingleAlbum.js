@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 
 export default class SingleAlbum extends Component {
 	render(){
+		const album = this.props.album;
+		console.log(album)
+		if(!album) return;
 		return (
 			<div className="album col-xs-10">
 			  <div>
-			    <h3>I SHOULD BE AN ALBUM NAME</h3>
-			    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=IshouldBEanIMAGE&w=300&h=300" className="img-thumbnail" />
+			    <h3>{album.name}</h3>
+			    <img src={`api/albums/${album.id}/image`} className="img-thumbnail" />
 			  </div>
 			  <table className='table'>
 			    <thead>

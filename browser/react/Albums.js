@@ -9,7 +9,7 @@ export default function Albums(props){
 		    	props.albums.map( (album) => {
 			    	return (
 			    		<div key={album.id} className="col-xs-4">
-					      <a className="thumbnail" href="#">
+					      <a className="thumbnail" onClick={() => { props.albumclick(album) } }>
 					        <img src={`/api/albums/${album.id}/image`} />
 					        <div className="caption">
 					          <h5>
