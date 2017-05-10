@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
 
 export default class SingleAlbum extends Component {
+
+	renderArtists(artists){
+		let artistsNames = artists.map( (artistInfo) => { return artistInfo.name });
+
+		// Build artists string correctly for single and multiple artists
+		return artistsNames.length === 1 ? 
+			artistsNames[0] :
+			artistsNames.join(', ').slice(-2);
+	}
+
 	render(){
 		const album = this.props.album;
-		console.log(album)
 		if(!album) return;
 		return (
-			<div className="album col-xs-10">
+			<div>
 			  <div>
 			    <h3>{album.name}</h3>
 			    <img src={`api/albums/${album.id}/image`} className="img-thumbnail" />
@@ -21,26 +30,22 @@ export default class SingleAlbum extends Component {
 			      </tr>
 			    </thead>
 			    <tbody>
-			      <tr>
-			        <td>
-			          <button className="btn btn-default btn-xs">
-			            <span className="glyphicon glyphicon-play"></span>
-			          </button>
-			        </td>
-			        <td>I SHOULD BE A SONG NAME</td>
-			        <td>I SHOULD BE A STRING OF THIS SONG'S ARTISTS</td>
-			        <td>I SHOULD BE A SONG GENRE</td>
-			      </tr>
-			      <tr>
-			        <td>
-			          <button className="btn btn-default btn-xs">
-			            <span className="glyphicon glyphicon-play"></span>
-			          </button>
-			        </td>
-			        <td>I SHOULD BE ANOTHER SONG NAME</td>
-			        <td>I SHOULD BE A STRING OF THAT SONG'S ARTISTS</td>
-			        <td>I SHOULD BE A SONG GENRE</td>
-			      </tr>
+			     {
+			     	album.songs.map( (song) => {
+			     		return (
+			     			<tr key={song.id}>
+			     			  <td>
+			     			    <button className="btn btn-default btn-xs">
+			     			      <span className="glyphicon glyphicon-play"></span>
+			     			    </button>
+			     			  </td>
+			     			  <td>{song.name}</td>
+			     			  <td>{this.renderArtists(song.artists)}</td>
+			     			  <td>{song.genre}</td>
+			     			</tr>
+			     		)
+			     	})
+			     }
 			    </tbody>
 			  </table>
 			</div>

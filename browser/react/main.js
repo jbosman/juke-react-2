@@ -6,6 +6,9 @@ import Albums from './Albums';
 import SingleAlbum from './SingleAlbum';
 
 import axios from 'axios';
+const toJSON = function(resp){ return resp.data }
+const log = console.log.bind(console);
+const logError = console.error.bind(console);
 
 export default class App extends Component {
 
@@ -20,13 +23,20 @@ export default class App extends Component {
 
 	componentDidMount(){
 		axios.get('/api/albums')
-		.then((resp) => {
-			this.setState({albums: resp.data})
+		.then(toJSON)
+		.then( albums => {
+			this.setState({albums: albums})
 		})
+		.catch(logError)
 	}
 
 	handleAlbumClick(album){
-		this.setState({selectedAlbum: album });
+		axios.get(`/api/albums/${album.id}`)
+		.then(toJSON)
+		.then( album => {
+			this.setState({selectedAlbum: album})
+		})
+		.catch(logError)
 	}
 
 	render(){
