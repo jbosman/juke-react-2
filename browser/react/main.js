@@ -3,13 +3,9 @@ import React, {Component} from 'react';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 import Albums from './Albums';
+import SingleAlbum from './SingleAlbum';
 
 import axios from 'axios';
-
-axios.get('/api/albums')
-.then((resp) => {
-	console.log(resp.data);
-})
 
 export default class App extends Component {
 
@@ -34,6 +30,7 @@ export default class App extends Component {
 
 				<div className="col-xs-10">
 				  <Albums albums={this.state.albums} />
+				  <SingleAlbum />
 				</div>
 
 				<Footer />
