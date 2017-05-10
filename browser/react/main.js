@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import Sidebar from './Sidebar';
 import Footer from './Footer';
+import Albums from './Albums';
 
 export default class App extends Component {
 	constructor(){
@@ -19,28 +20,7 @@ export default class App extends Component {
 				</div>
 
 				<div className="col-xs-10">
-				  <h3>Albums</h3>
-				  <div className="row">
-
-				    { 
-				    	this.state.albums.map( (album) => {
-					    	return (
-					    		<div key={album.id} className="col-xs-4">
-							      <a className="thumbnail" href="#">
-							        <img src={album.imageUrl} />
-							        <div className="caption">
-							          <h5>
-							            <span>{album.name}</span>
-							          </h5>
-							          <small>{album.songs.length} songs</small>
-							        </div>
-							      </a>
-							    </div>
-					    	)
-				    	})
-					}
-				    
-				  </div>
+				  <Albums albums={this.state.albums} />
 				</div>
 
 				<Footer />
@@ -48,12 +28,6 @@ export default class App extends Component {
 		)
 	}
 }
-
-/*<div className="col-xs-10">
-					Hey - check your console! If it says "Hello React", your webpack built properly!
-					{this.state.albums.map( (album) => { return <div>{album.name}</div> } )}
-				</div>
-				*/
 
 const fakeAlbums = [
   {

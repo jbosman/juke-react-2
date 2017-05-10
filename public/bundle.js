@@ -22024,6 +22024,10 @@ var _Footer = __webpack_require__(183);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _Albums = __webpack_require__(185);
+
+var _Albums2 = _interopRequireDefault(_Albums);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22058,45 +22062,7 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'col-xs-10' },
-          _react2.default.createElement(
-            'h3',
-            null,
-            'Albums'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            this.state.albums.map(function (album) {
-              return _react2.default.createElement(
-                'div',
-                { key: album.id, className: 'col-xs-4' },
-                _react2.default.createElement(
-                  'a',
-                  { className: 'thumbnail', href: '#' },
-                  _react2.default.createElement('img', { src: album.imageUrl }),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'caption' },
-                    _react2.default.createElement(
-                      'h5',
-                      null,
-                      _react2.default.createElement(
-                        'span',
-                        null,
-                        album.name
-                      )
-                    ),
-                    _react2.default.createElement(
-                      'small',
-                      null,
-                      album.songs.length,
-                      ' songs'
-                    )
-                  )
-                )
-              );
-            })
-          )
+          _react2.default.createElement(_Albums2.default, { albums: this.state.albums })
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -22106,13 +22072,9 @@ var App = function (_Component) {
   return App;
 }(_react.Component);
 
-/*<div className="col-xs-10">
-					Hey - check your console! If it says "Hello React", your webpack built properly!
-					{this.state.albums.map( (album) => { return <div>{album.name}</div> } )}
-				</div>
-				*/
-
 exports.default = App;
+
+
 var fakeAlbums = [{
   name: 'Abbey Road',
   id: 1,
@@ -22288,6 +22250,70 @@ var Sidebar = function (_Component) {
 }(_react.Component);
 
 exports.default = Sidebar;
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = Albums;
+
+var _react = __webpack_require__(82);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Albums(props) {
+	return _react2.default.createElement(
+		"div",
+		null,
+		_react2.default.createElement(
+			"h3",
+			null,
+			"Albums"
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: "row" },
+			props.albums.map(function (album) {
+				return _react2.default.createElement(
+					"div",
+					{ key: album.id, className: "col-xs-4" },
+					_react2.default.createElement(
+						"a",
+						{ className: "thumbnail", href: "#" },
+						_react2.default.createElement("img", { src: album.imageUrl }),
+						_react2.default.createElement(
+							"div",
+							{ className: "caption" },
+							_react2.default.createElement(
+								"h5",
+								null,
+								_react2.default.createElement(
+									"span",
+									null,
+									album.name
+								)
+							),
+							_react2.default.createElement(
+								"small",
+								null,
+								album.songs.length,
+								" songs"
+							)
+						)
+					)
+				);
+			})
+		)
+	);
+}
 
 /***/ })
 /******/ ]);
