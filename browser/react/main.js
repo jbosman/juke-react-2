@@ -19,6 +19,7 @@ export default class App extends Component {
 						selectedAlbum: {}
 					};
 		this.handleAlbumClick = this.handleAlbumClick.bind(this);
+		this.handleAlbumButtonClick = this.handleAlbumButtonClick.bind(this);
 	}
 
 	componentDidMount(){
@@ -39,11 +40,15 @@ export default class App extends Component {
 		.catch(logError)
 	}
 
+	handleAlbumButtonClick(){
+		this.setState({selectedAlbum: {} });
+	}
+
 	render(){
 		return (
 			<div className='container-fluid'>
 				<div className="col-xs-2">
-					<Sidebar />
+					<Sidebar handleAlbumButtonClick={this.handleAlbumButtonClick}/>
 				</div>
 
 				<div className="col-xs-10">
