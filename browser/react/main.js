@@ -12,13 +12,17 @@ axios.get('/api/albums')
 })
 
 export default class App extends Component {
-	constructor(){
-		super();
-		this.state = { albums: [] };
+
+	componentDidMount(){
 		axios.get('/api/albums')
 		.then((resp) => {
 			this.setState({albums: resp.data})
 		})
+	}
+
+	constructor(){
+		super();
+		this.state = { albums: [] };
 	}
 
 	render(){
