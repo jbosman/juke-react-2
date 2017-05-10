@@ -25,14 +25,14 @@ export default class App extends Component {
 				    { 
 				    	this.state.albums.map( (album) => {
 					    	return (
-					    		<div className="col-xs-4">
+					    		<div key={album.id} className="col-xs-4">
 							      <a className="thumbnail" href="#">
 							        <img src={album.imageUrl} />
 							        <div className="caption">
 							          <h5>
 							            <span>{album.name}</span>
 							          </h5>
-							          <small>{album.songs.length}</small>
+							          <small>{album.songs.length} songs</small>
 							        </div>
 							      </a>
 							    </div>

@@ -22069,7 +22069,7 @@ var App = function (_Component) {
             this.state.albums.map(function (album) {
               return _react2.default.createElement(
                 'div',
-                { className: 'col-xs-4' },
+                { key: album.id, className: 'col-xs-4' },
                 _react2.default.createElement(
                   'a',
                   { className: 'thumbnail', href: '#' },
@@ -22089,7 +22089,8 @@ var App = function (_Component) {
                     _react2.default.createElement(
                       'small',
                       null,
-                      album.songs.length
+                      album.songs.length,
+                      ' songs'
                     )
                   )
                 )
