@@ -9,6 +9,8 @@ export default class App extends Component {
 		this.state = { albums: fakeAlbums };
 	}
 
+
+
 	render(){
 		return (
 			<div className='container-fluid'>
@@ -17,8 +19,28 @@ export default class App extends Component {
 				</div>
 
 				<div className="col-xs-10">
-					Hey - check your console! If it says "Hello React", your webpack built properly!
-					{this.state.albums.map( (album) => { return <div>{album.name}</div> } )}
+				  <h3>Albums</h3>
+				  <div className="row">
+
+				    { 
+				    	this.state.albums.map( (album) => {
+					    	return (
+					    		<div className="col-xs-4">
+							      <a className="thumbnail" href="#">
+							        <img src={album.imageUrl} />
+							        <div className="caption">
+							          <h5>
+							            <span>{album.name}</span>
+							          </h5>
+							          <small>{album.songs.length}</small>
+							        </div>
+							      </a>
+							    </div>
+					    	)
+				    	})
+					}
+				    
+				  </div>
 				</div>
 
 				<Footer />
@@ -26,6 +48,12 @@ export default class App extends Component {
 		)
 	}
 }
+
+/*<div className="col-xs-10">
+					Hey - check your console! If it says "Hello React", your webpack built properly!
+					{this.state.albums.map( (album) => { return <div>{album.name}</div> } )}
+				</div>
+				*/
 
 const fakeAlbums = [
   {

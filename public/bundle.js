@@ -22058,14 +22058,44 @@ var App = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'col-xs-10' },
-          'Hey - check your console! If it says "Hello React", your webpack built properly!',
-          this.state.albums.map(function (album) {
-            return _react2.default.createElement(
-              'div',
-              null,
-              album.name
-            );
-          })
+          _react2.default.createElement(
+            'h3',
+            null,
+            'Albums'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            this.state.albums.map(function (album) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'col-xs-4' },
+                _react2.default.createElement(
+                  'a',
+                  { className: 'thumbnail', href: '#' },
+                  _react2.default.createElement('img', { src: album.imageUrl }),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'caption' },
+                    _react2.default.createElement(
+                      'h5',
+                      null,
+                      _react2.default.createElement(
+                        'span',
+                        null,
+                        album.name
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'small',
+                      null,
+                      album.songs.length
+                    )
+                  )
+                )
+              );
+            })
+          )
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -22075,9 +22105,13 @@ var App = function (_Component) {
   return App;
 }(_react.Component);
 
+/*<div className="col-xs-10">
+					Hey - check your console! If it says "Hello React", your webpack built properly!
+					{this.state.albums.map( (album) => { return <div>{album.name}</div> } )}
+				</div>
+				*/
+
 exports.default = App;
-
-
 var fakeAlbums = [{
   name: 'Abbey Road',
   id: 1,
