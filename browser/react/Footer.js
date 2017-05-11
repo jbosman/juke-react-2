@@ -1,17 +1,36 @@
 import React, {Component} from 'react';
 
 export default class Footer extends Component{
+
+	handleNextButtonClick(){
+
+	}
+
 	render(){
+		if(!this.props.currentSong.songId) return <div></div>;
 		return (
 			<footer>
 		        <div className="pull-left">
-		          <button className="btn btn-default">
+		          <button 
+		          	onClick={ () => { this.props.handlePreviousButtonClick() } }
+		          	className="btn btn-default"
+		          >
 		            <span className="glyphicon glyphicon-step-backward"></span>
 		          </button>
-		          <button className="btn btn-default">
-		            <span className="glyphicon glyphicon-play"></span>
+		          <button 
+		          	onClick={() => {this.props.handlePlayButtonClick(this.props.currentSong.songId)} }
+		          	className="btn btn-default">
+		            <span className= { 
+	 			      	this.props.currentSong.isPlaying ?
+	 			      	"glyphicon glyphicon-pause":
+	 			      	"glyphicon glyphicon-play"
+	 			      }
+	 			    >
+			     	</span>
 		          </button>
-		          <button className="btn btn-default">
+		          <button 
+		          	onClick={ () => this.props.handleNextButtonClick() }
+		          	className="btn btn-default">
 		            <span className="glyphicon glyphicon-step-forward"></span>
 		          </button>
 		        </div>

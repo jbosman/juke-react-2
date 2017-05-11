@@ -41,7 +41,7 @@ export default class SingleAlbum extends Component {
 			     			      	"glyphicon glyphicon-pause":
 			     			      	"glyphicon glyphicon-play"
 			     			      }
-			     			      	>
+			     			      >
 			     			      </span>
 			     			    </button>
 			     			  </td>

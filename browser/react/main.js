@@ -19,11 +19,13 @@ export default class App extends Component {
 		this.state = { 
 						albums: [],
 						selectedAlbum: {},
-						selectedSong: {}
+						selectedSong: { songId: 0, isPlaying: false }
 					};
 		this.handleAlbumClick = this.handleAlbumClick.bind(this);
 		this.handleAlbumButtonClick = this.handleAlbumButtonClick.bind(this);
 		this.handlePlayButtonClick = this.handlePlayButtonClick.bind(this);
+		this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
+		this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
 	}
 
 	componentDidMount(){
@@ -67,6 +69,19 @@ export default class App extends Component {
 		}
 	}
 
+	handleNextButtonClick(){
+		let songIds = this.state.selectedAlbum.songs.map( (song) => song.id )
+		let nextSongIndex = (songIds.indexOf(this.state.selectedSong.songId) + 1) % ( songIds.length );
+		this.handlePlayButtonClick(songIds[nextSongIndex]);
+	}
+
+	handlePreviousButtonClick(){
+		let songIds = this.state.selectedAlbum.songs.map( (song) => song.id )
+		let prevSongIndex = songIds.indexOf(this.state.selectedSong.songId) - 1;
+		prevSongIndex = prevSongIndex === -1 ? songIds.length - 1 : prevSongIndex;
+		this.handlePlayButtonClick(songIds[prevSongIndex]);
+	}
+
 	render(){
 		return (
 			<div className='container-fluid'>
@@ -85,7 +100,12 @@ export default class App extends Component {
 					}
 				</div>
 
-				<Footer />
+				<Footer
+					handlePlayButtonClick={this.handlePlayButtonClick} 
+					currentSong={this.state.selectedSong} 
+					handleNextButtonClick={this.handleNextButtonClick}
+					handlePreviousButtonClick={this.handlePreviousButtonClick}
+				/>
 			</div>
 		)
 	}
