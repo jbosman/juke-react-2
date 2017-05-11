@@ -36,7 +36,13 @@ export default class SingleAlbum extends Component {
 			     			<tr key={song.id}>
 			     			  <td>
 			     			    <button onClick={ () => this.props.handlePlayButtonClick(song.id) } className="btn btn-default btn-xs">
-			     			      <span className="glyphicon glyphicon-play"></span>
+			     			      <span className= { 
+			     			      	song.id === this.props.currentSong.songId && this.props.currentSong.isPlaying ?
+			     			      	"glyphicon glyphicon-pause":
+			     			      	"glyphicon glyphicon-play"
+			     			      }
+			     			      	>
+			     			      </span>
 			     			    </button>
 			     			  </td>
 			     			  <td>{song.name}</td>

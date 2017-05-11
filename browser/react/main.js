@@ -18,7 +18,8 @@ export default class App extends Component {
 		super();
 		this.state = { 
 						albums: [],
-						selectedAlbum: {}
+						selectedAlbum: {},
+						selectedSong: {}
 					};
 		this.handleAlbumClick = this.handleAlbumClick.bind(this);
 		this.handleAlbumButtonClick = this.handleAlbumButtonClick.bind(this);
@@ -48,10 +49,22 @@ export default class App extends Component {
 	}
 
 	handlePlayButtonClick(songId){
-		audio.src = `/api/songs/${songId}/audio`;
-		audio.load();
-		audio.play();
-		
+		const currentSong = this.state.selectedSong;
+		// If selected song doesn't match current songId load the new song
+		if( currentSong.songId !== songId ){
+			audio.src = `/api/songs/${songId}/audio`;
+			audio.load();
+			audio.play();
+			this.setState({ selectedSong: { songId: songId, isPlaying: true } });
+		}
+		else if( currentSong.isPlaying ){
+			audio.pause();
+			this.setState({ selectedSong: { songId: songId, isPlaying: false } });
+		}
+		else {
+			audio.play();
+			this.setState({ selectedSong: { songId: songId, isPlaying: true } });
+		}
 	}
 
 	render(){
@@ -66,6 +79,7 @@ export default class App extends Component {
 						<SingleAlbum 
 							album={this.state.selectedAlbum} 
 							handlePlayButtonClick={this.handlePlayButtonClick}
+							currentSong={this.state.selectedSong}
 						/> : 
 						<Albums albums={this.state.albums} albumclick={this.handleAlbumClick} /> 
 					}
