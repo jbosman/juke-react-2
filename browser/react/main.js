@@ -47,10 +47,11 @@ export default class App extends Component {
 		this.setState({selectedAlbum: {} });
 	}
 
-	handlePlayButtonClick(){
-		audio.src = 'https://learndotresources.s3.amazonaws.com/workshop/5616dbe5a561920300b10cd7/Dexter_Britain_-_03_-_The_Stars_Are_Out_Interlude.mp3';
+	handlePlayButtonClick(songId){
+		audio.src = `/api/songs/${songId}/audio`;
 		audio.load();
 		audio.play();
+		
 	}
 
 	render(){
