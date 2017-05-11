@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 
 export default class Footer extends Component{
-
-	handleNextButtonClick(){
-
-	}
-
 	render(){
 		if(!this.props.currentSong.songId) return <div></div>;
 		return (
@@ -36,7 +31,14 @@ export default class Footer extends Component{
 		        </div>
 		        <div className="bar">
 		          <div className="progress">
-		            <div className="progress-bar"></div>
+		            <div 
+		            	className="progress-bar" 
+		            	style={{
+		            		width: `${this.props.currentSong.progress}`,
+		            		backgroundColor: '#00BC8C'
+		            	}}
+		            >
+		            </div>
 		          </div>
 		        </div>
 		    </footer>

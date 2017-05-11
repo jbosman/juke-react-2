@@ -19,7 +19,7 @@ export default class App extends Component {
 		this.state = { 
 						albums: [],
 						selectedAlbum: {},
-						selectedSong: { songId: 0, isPlaying: false }
+						selectedSong: { songId: 0, isPlaying: false, progress: 0 },
 					};
 		this.handleAlbumClick = this.handleAlbumClick.bind(this);
 		this.handleAlbumButtonClick = this.handleAlbumButtonClick.bind(this);
@@ -38,6 +38,17 @@ export default class App extends Component {
 
 		audio.addEventListener( 'ended', () => {
 			this.nextSong();
+		});
+
+		audio.addEventListener( 'timeupdate', () => {
+			let currentSong = this.state.selectedSong;
+			this.setState({
+				selectedSong: {
+					songId: 	currentSong.songId,
+					isPlaying: 	currentSong.isPlaying,
+					progress: 	100 * audio.currentTime / audio.duration
+				}
+			})
 		})
 	}
 
