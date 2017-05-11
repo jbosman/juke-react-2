@@ -23,9 +23,9 @@ export default class App extends Component {
 					};
 		this.handleAlbumClick = this.handleAlbumClick.bind(this);
 		this.handleAlbumButtonClick = this.handleAlbumButtonClick.bind(this);
-		this.handlePlayButtonClick = this.handlePlayButtonClick.bind(this);
-		this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
-		this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this);
+		this.playSong = this.playSong.bind(this);
+		this.nextSong = this.nextSong.bind(this);
+		this.previousSong = this.previousSong.bind(this);
 	}
 
 	componentDidMount(){
@@ -35,6 +35,10 @@ export default class App extends Component {
 			this.setState({albums: albums})
 		})
 		.catch(logError)
+
+		audio.addEventListener( 'ended', () => {
+			this.nextSong();
+		})
 	}
 
 	handleAlbumClick(album){
@@ -50,7 +54,7 @@ export default class App extends Component {
 		this.setState({selectedAlbum: {} });
 	}
 
-	handlePlayButtonClick(songId){
+	playSong(songId){
 		const currentSong = this.state.selectedSong;
 		// If selected song doesn't match current songId load the new song
 		if( currentSong.songId !== songId ){
@@ -69,17 +73,17 @@ export default class App extends Component {
 		}
 	}
 
-	handleNextButtonClick(){
+	nextSong(){
 		let songIds = this.state.selectedAlbum.songs.map( (song) => song.id )
 		let nextSongIndex = (songIds.indexOf(this.state.selectedSong.songId) + 1) % ( songIds.length );
-		this.handlePlayButtonClick(songIds[nextSongIndex]);
+		this.playSong(songIds[nextSongIndex]);
 	}
 
-	handlePreviousButtonClick(){
+	previousSong(){
 		let songIds = this.state.selectedAlbum.songs.map( (song) => song.id )
 		let prevSongIndex = songIds.indexOf(this.state.selectedSong.songId) - 1;
 		prevSongIndex = prevSongIndex === -1 ? songIds.length - 1 : prevSongIndex;
-		this.handlePlayButtonClick(songIds[prevSongIndex]);
+		this.playSong(songIds[prevSongIndex]);
 	}
 
 	render(){
@@ -93,7 +97,7 @@ export default class App extends Component {
 					{ this.state.selectedAlbum.id ? 
 						<SingleAlbum 
 							album={this.state.selectedAlbum} 
-							handlePlayButtonClick={this.handlePlayButtonClick}
+							handlePlayButtonClick={this.playSong}
 							currentSong={this.state.selectedSong}
 						/> : 
 						<Albums albums={this.state.albums} albumclick={this.handleAlbumClick} /> 
@@ -101,10 +105,10 @@ export default class App extends Component {
 				</div>
 
 				<Footer
-					handlePlayButtonClick={this.handlePlayButtonClick} 
+					handlePlayButtonClick={this.playSong} 
 					currentSong={this.state.selectedSong} 
-					handleNextButtonClick={this.handleNextButtonClick}
-					handlePreviousButtonClick={this.handlePreviousButtonClick}
+					handleNextButtonClick={this.nextSong}
+					handlePreviousButtonClick={this.previousSong}
 				/>
 			</div>
 		)
