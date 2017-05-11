@@ -42,11 +42,14 @@ export default class App extends Component {
 
 		audio.addEventListener( 'timeupdate', () => {
 			let currentSong = this.state.selectedSong;
+			// Avoid setting prgress to NaN
+			let tempProgress = 100 * audio.currentTime / audio.duration
+			let songProgress = isNaN( tempProgress ) ? 0 : tempProgress;
 			this.setState({
 				selectedSong: {
 					songId: 	currentSong.songId,
 					isPlaying: 	currentSong.isPlaying,
-					progress: 	100 * audio.currentTime / audio.duration
+					progress: 	songProgress
 				}
 			})
 		})

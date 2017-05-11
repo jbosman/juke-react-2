@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+function isNan(value){
+	return value !== value;
+}
+
 export default function Footer(props){
 	const { 
 		currentSong,  
@@ -40,7 +44,7 @@ export default function Footer(props){
 	            <div 
 	            	className="progress-bar" 
 	            	style={{
-	            		width: `${ currentSong.progress }`,
+	            		width: currentSong.progress,
 	            		backgroundColor: '#00BC8C'
 	            	}}
 	            >
