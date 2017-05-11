@@ -114,7 +114,7 @@ export default class App extends Component {
 							handlePlayButtonClick={this.playSong}
 							currentSong={this.state.selectedSong}
 						/> : 
-						<Albums albums={this.state.albums} albumclick={this.handleAlbumClick} /> 
+						<Albums albums={this.state.albums} albumClick={this.handleAlbumClick} /> 
 					}
 				</div>
 
