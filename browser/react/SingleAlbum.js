@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 function renderArtists(artists){
 	let artistsNames = artists.map( (artistInfo) => { return artistInfo.name });
