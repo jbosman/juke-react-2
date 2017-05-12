@@ -12,17 +12,18 @@ function renderArtists(artists){
 export default function SingleAlbum(props){
 
 	const { 
-		album,
+		currentAlbum,
 		currentSong,
-		handlePlayButtonClick
+		udpateSong,
+		playSong
 	} = props;
 
-	if(!album) return;
+	if(!currentAlbum) return;
 	return (
 		<div>
 		  <div>
-		    <h3>{album.name}</h3>
-		    <img src={`api/albums/${album.id}/image`} className="img-thumbnail" />
+		    <h3>{currentAlbum.name}</h3>
+		    <img src={`api/albums/${currentAlbum.id}/image`} className="img-thumbnail" />
 		  </div>
 		  <table className='table'>
 		    <thead>
@@ -35,19 +36,20 @@ export default function SingleAlbum(props){
 		    </thead>
 		    <tbody>
 		     {
-		     	album.songs.map( (song) => {
+		     	currentAlbum.songs.map( (song) => {
 		     		return (
 		     			<tr key={song.id}>
 		     			  <td>
-		     			    <button onClick={ () => handlePlayButtonClick(song.id) } className="btn btn-default btn-xs">
-		     			      <span className= { 
-		     			      	song.id === currentSong.songId && currentSong.isPlaying ?
-		     			      	"glyphicon glyphicon-pause":
-		     			      	"glyphicon glyphicon-play"
-		     			      }
-		     			      >
-		     			      </span>
-		     			    </button>
+		     			  	{
+		     			    song.id === currentSong.songId ?
+		     			    	<span></span> :
+			     			    <button 
+			     			    	onClick={ () => { playSong(song.id); } 
+			     			    	} 
+			     			    	className="btn btn-default btn-xs">
+			     			      		<span className="glyphicon glyphicon-play"></span>
+			     			    </button>
+		     				}
 		     			  </td>
 		     			  <td>{song.name}</td>
 		     			  <td>{renderArtists(song.artists)}</td>

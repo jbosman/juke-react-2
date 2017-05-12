@@ -1,15 +1,9 @@
 import React from 'react';
 
-function isNan(value){
-	return value !== value;
-}
-
 export default function Footer(props){
 	const { 
 		currentSong,  
-		handlePlayButtonClick,
-		handleNextButtonClick,
-		handlePreviousButtonClick
+		audioCtrls
 	} = props;
 
 	if(!currentSong.songId) return <div></div>;
@@ -17,13 +11,18 @@ export default function Footer(props){
 		<footer>
 	        <div className="pull-left">
 	          <button 
-	          	onClick={ () => { handlePreviousButtonClick() } }
+	          	onClick={ () => { audioCtrls.previousSong() } }
 	          	className="btn btn-default"
 	          >
 	            <span className="glyphicon glyphicon-step-backward"></span>
 	          </button>
 	          <button 
-	          	onClick={() => { handlePlayButtonClick( currentSong.songId) } }
+	          	onClick={ () => { 
+	          		currentSong.isPlaying ? 
+	          			audioCtrls.pauseSong() :
+	          			audioCtrls.playSong()
+	          		}
+	          	}
 	          	className="btn btn-default">
 	            <span className= { 
  			      	currentSong.isPlaying ?
@@ -34,7 +33,7 @@ export default function Footer(props){
 		     	</span>
 	          </button>
 	          <button 
-	          	onClick={ () => handleNextButtonClick() }
+	          	onClick={ () => audioCtrls.nextSong() }
 	          	className="btn btn-default">
 	            <span className="glyphicon glyphicon-step-forward"></span>
 	          </button>
