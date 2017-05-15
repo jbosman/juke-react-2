@@ -22,7 +22,7 @@ export default function Main(props){
 		updateSong,
 		audioCtrls
 	} = props;
-
+	console.log('children: ', props.children)
 	if(!appState) return <div></div>
 
 	return (
@@ -32,14 +32,16 @@ export default function Main(props){
 			</div>
 
 			<div className="col-xs-10">
-				{ isAlbumSelected(appState) ? 
+				{ 
+					isAlbumSelected(appState) ? 
 					<SingleAlbum 
 						currentAlbum={appState.selectedAlbum} 
 						currentSong={appState.selectedSong}
 						udpateSong={updateSong}
 						playSong={audioCtrls.playSong}
 					/> : 
-					<Albums albums={appState.albums} updateAlbum={updateAlbum} /> 
+					<Albums albums={appState.albums} updateAlbum={updateAlbum} />
+					
 				}
 			</div>
 
@@ -47,4 +49,5 @@ export default function Main(props){
 		</div>
 	)
 }
+
 
