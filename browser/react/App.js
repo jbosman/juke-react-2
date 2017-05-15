@@ -100,6 +100,7 @@ export default class App extends Component {
 	}
 
 	render(){
+		
 		const audioCtrls = {
 			playSong: 		this.playSong,
 			pauseSong: 		this.pauseSong,
@@ -112,6 +113,7 @@ export default class App extends Component {
 				updateAlbum={this.updateSelectedAblum}
 				updateSong={this.updateSelectedSong}
 				audioCtrls={audioCtrls}
+				children={this.props.children}
 			/>
 		)
 	}

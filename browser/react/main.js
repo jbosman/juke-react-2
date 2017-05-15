@@ -22,7 +22,7 @@ export default function Main(props){
 		updateSong,
 		audioCtrls
 	} = props;
-	console.log('children: ', props.children)
+	
 	if(!appState) return <div></div>
 
 	return (
@@ -33,15 +33,17 @@ export default function Main(props){
 
 			<div className="col-xs-10">
 				{ 
-					isAlbumSelected(appState) ? 
-					<SingleAlbum 
-						currentAlbum={appState.selectedAlbum} 
-						currentSong={appState.selectedSong}
-						udpateSong={updateSong}
-						playSong={audioCtrls.playSong}
-					/> : 
-					<Albums albums={appState.albums} updateAlbum={updateAlbum} />
-					
+					props.children ? 
+						React.cloneElement( props.children, { 
+							albums: appState.albums,
+							updateAlbum: updateAlbum,
+
+							currentAlbum: appState.selectedAlbum,
+							currentSong: appState.selectedSong,
+							updateSong: updateSong,
+							playSong: audioCtrls.playSong
+						})
+						: null
 				}
 			</div>
 
@@ -49,5 +51,14 @@ export default function Main(props){
 		</div>
 	)
 }
+
+// isAlbumSelected(appState) ? 
+// 					<SingleAlbum 
+// 						currentAlbum={appState.selectedAlbum} 
+// 						currentSong={appState.selectedSong}
+// 						udpateSong={updateSong}
+// 						playSong={audioCtrls.playSong}
+// 					/> : 
+// 					<Albums albums={appState.albums} updateAlbum={updateAlbum} />
 
 
