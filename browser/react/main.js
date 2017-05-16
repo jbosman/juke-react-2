@@ -24,7 +24,7 @@ export default function Main(props){
 	} = props;
 	
 	if(!appState) return <div></div>
-
+	
 	return (
 		<div className='container-fluid'>
 			<div className="col-xs-2">
@@ -41,7 +41,7 @@ export default function Main(props){
 							currentAlbum: appState.selectedAlbum,
 							currentSong: appState.selectedSong,
 							updateSong: updateSong,
-							playSong: audioCtrls.playSong
+							playSong: audioCtrls.playSong,
 						})
 						: null
 				}

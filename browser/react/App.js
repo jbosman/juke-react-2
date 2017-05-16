@@ -49,13 +49,14 @@ export default class App extends Component {
 		})
 	}
 
-	updateSelectedAblum(album){
-		if(!album) this.setState({selectedAlbum: {} });
+	updateSelectedAblum(albumId){
+
+		if(typeof albumId !== 'number') this.setState({selectedAlbum: {} });
 		else{
-			axios.get(`/api/albums/${album.id}`)
+			axios.get(`/api/albums/${albumId}`)
 			.then(toJSON)
 			.then( album => {
-				this.setState({selectedAlbum: album})
+				this.setState({selectedAlbum: album});
 			})
 			.catch(logError)
 		}

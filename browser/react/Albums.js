@@ -19,7 +19,7 @@ export default function Albums(props){
 		albums,
 		updateAlbum
 	} = props;
-
+	
 	return (
 		<div>
 			<h3>Albums</h3>
