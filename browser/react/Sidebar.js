@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 /* a-tag onClick note
 	Calling updateAlbum without an argument defaults the argument to an empty object
@@ -14,7 +15,7 @@ export default function Sidebar(props){
 		  <img src="juke.svg" className="logo" />
 		  <section>
 		    <h4 className="menu-item active">
-		      <a onClick={ () => updateAlbum() }>ALBUMS</a>
+		    	<Link to='/albums'>ALBUMS</Link>
 		    </h4>
 		  </section>
 		</sidebar>
