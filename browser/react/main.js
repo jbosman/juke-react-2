@@ -28,7 +28,7 @@ export default function Main(props){
 	return (
 		<div className='container-fluid'>
 			<div className="col-xs-2">
-				<Sidebar updateAlbum={updateAlbum}/>
+				<Sidebar />
 			</div>
 
 			<div className="col-xs-10">
