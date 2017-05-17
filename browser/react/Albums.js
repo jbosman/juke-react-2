@@ -29,9 +29,9 @@ export default function Albums(props){
 		    	albums.map( (album) => {
 			    	return (
 			    		<div key={album.id} className="col-xs-4">
-					      <Link className="thumbnail" to={`/albums/${album.id}`}>
+					      <Link to={`/albums/${album.id}`}>
 					      
-					        <img src={`/api/albums/${album.id}/image`} />
+					        <img className='singleAlbumImg' src={`/api/albums/${album.id}/image`} />
 					        <div className="caption">
 					          <h5>
 					            <span>{album.name}</span>
