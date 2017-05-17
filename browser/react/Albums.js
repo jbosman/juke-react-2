@@ -16,10 +16,7 @@ function handleAlbumClick(album, updateAlbumCB){
 	}
 
 export default function Albums(props){
-	const { 
-		albums,
-		updateAlbum
-	} = props;
+	const { albums } = props;
 
 	return (
 		<div>
