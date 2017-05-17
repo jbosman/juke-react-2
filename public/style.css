@@ -58,3 +58,8 @@ footer {
 
 .album img {
   height: 300px; }
+
+.singleAlbumImg {
+  width: 300px;
+  height: 100%;
+}

@@ -39,7 +39,7 @@ export default class SingleAlbum extends Component{
 			<div>
 			  <div>
 			    <h3>{currentAlbum.name}</h3>
-			    <img src={`api/albums/${currentAlbum.id}/image`} className="img-thumbnail" />
+			    <img src={`api/albums/${currentAlbum.id}/image`} className="singleAlbumImg" />
 			  </div>
 			  <table className='table'>
 			    <thead>

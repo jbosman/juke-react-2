@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 import axios from 'axios';
 const toJSON = function(resp){ return resp.data }
@@ -19,7 +20,7 @@ export default function Albums(props){
 		albums,
 		updateAlbum
 	} = props;
-	
+
 	return (
 		<div>
 			<h3>Albums</h3>
@@ -28,10 +29,8 @@ export default function Albums(props){
 		    	albums.map( (album) => {
 			    	return (
 			    		<div key={album.id} className="col-xs-4">
-					      <a 
-					      	className="thumbnail" 
-					      	onClick={() => { handleAlbumClick(album, updateAlbum) } }
-					      >
+					      <Link className="thumbnail" to={`/albums/${album.id}`}>
+					      
 					        <img src={`/api/albums/${album.id}/image`} />
 					        <div className="caption">
 					          <h5>
@@ -39,7 +38,7 @@ export default function Albums(props){
 					          </h5>
 					          <small>{album.songs.length} songs</small>
 					        </div>
-					      </a>
+					      </Link>
 					    </div>
 			    	)
 		    	})
@@ -48,3 +47,5 @@ export default function Albums(props){
 		</div>
 	)
 }
+
+// <a className="thumbnail" onClick={() => { handleAlbumClick(album, updateAlbum) } }>
