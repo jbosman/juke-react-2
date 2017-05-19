@@ -38,6 +38,8 @@ export default function Main(props){
 							albums: appState.albums,
 							updateAlbum: updateAlbum,
 
+							artists: appState.artists,
+
 							currentAlbum: appState.selectedAlbum,
 							currentSong: appState.selectedSong,
 							updateSong: updateSong,

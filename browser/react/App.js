@@ -22,6 +22,8 @@ export default class App extends Component {
 						albums: [],
 						selectedAlbum: {},
 						selectedSong: { songId: 0, isPlaying: false, progress: 0 },
+						artists: [],
+						selectedArtist: { id: 0, name: '' }
 		};
 		this.updateSelectedAblum = 	this.updateSelectedAblum.bind(this);
 		this.updateSelectedSong = 	this.updateSelectedSong.bind(this);
@@ -38,6 +40,12 @@ export default class App extends Component {
 			this.setState({albums: albums})
 		})
 		.catch(logError)
+
+		axios.get('/api/artists')
+		.then(toJSON)
+		.then( artists => {
+			this.setState({artists: artists});
+		})
 
 		audio.addEventListener( 'ended', () => {
 			this.nextSong();
